@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Uma declaração especial de amor">
+    <meta name="theme-color" content="#E91E63">
+    
+    <!-- iOS PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Para Você ❤️">
+    
+    <title>Para Você 💕</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <!-- Corações flutuantes de fundo -->
+    <div class="floating-hearts">❤️</div>
+    <div class="floating-hearts">💕</div>
+    <div class="floating-hearts">💖</div>
+    <div class="floating-hearts">💗</div>
+    <div class="floating-hearts">💝</div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">💕 Para Você</h1>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <ul class="nav-list">
+            <li><a href="#home" class="nav-link active">💝 Início</a></li>
+            <li><a href="#about" class="nav-link">💖 Sobre Nós</a></li>
+            <li><a href="#features" class="nav-link">💕 Momentos</a></li>
+            <li><a href="#contact" class="nav-link">💌 Mensagem</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section id="home" class="section hero">
+            <div class="container">
+                <h2 class="hero-title">💖 Bianca, Você é Especial 💖</h2>
+                <p class="hero-subtitle">Esta página foi feita especialmente para você, meu amor</p>
+                <button class="btn btn-primary">💕 Te amo</button>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">Nossa História de Amor ❤️</h2>
+                <p class="section-text" style="text-align: left; max-width: 800px; margin: 0 auto;">
+                    <strong>💫 O Dia em Que o Destino Nos Uniu</strong><br><br>
+                    
+                    Era um dia comum de trabalho. Eu estava longe e não tinha motivo para ir até a 
+                    Rodoviária do Plano Piloto, mas mesmo assim algo me fez ir até lá. E então eu te vi, 
+                    <strong>Bianca</strong>. Você estava na fila do ônibus, e eu tinha certeza que te 
+                    conhecia de algum lugar, mas não conseguia lembrar de onde. Fiquei te olhando, mas 
+                    não tive coragem de falar nada naquele momento. 💭<br><br>
+                    
+                    <strong>💕 Uma Semana Depois</strong><br><br>
+                    
+                    Passou uma semana e você não saía da minha cabeça. Comecei a fuçar no Instagram até 
+                    que encontrei uma curtida antiga sua em uma das minhas fotos. Era você! Juntei 
+                    coragem e te mandei mensagem. 💫<br><br>
+                     ✨<br><br>
+                    
+                    Desde então, você é a pessoa mais especial da minha vida, Bianca. ❤️<br><br>
+                    
+                    <em>Te amo hoje e sempre, meu amor. 💕</em>
+                </p>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section section-alt">
+            <div class="container">
+                <h2 class="section-title">Nossos Momentos Especiais 💕</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">�</div>
+                        <h3 class="feature-title">Primeiro Encontro</h3>
+                        <p class="feature-text">O dia em que tudo começou</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">�</div>
+                        <h3 class="feature-title">Rodoviária do Plano Piloto</h3>
+                        <p class="feature-text">Onde o destino nos uniu pela primeira vez</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💖</div>
+                        <h3 class="feature-title">A Primeira Mensagem</h3>
+                        <p class="feature-text">A coragem de te chamar mudou tudo</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💗</div>
+                        <h3 class="feature-title">Cada Momento</h3>
+                        <p class="feature-text">Bianca, você ilumina todos os meus dias</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💕</div>
+                        <h3 class="feature-title">Para Sempre</h3>
+                        <p class="feature-text">Você e eu, eternamente juntos</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Deixe uma Mensagem 💌</h2>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Seu Nome</label>
+                        <input type="text" id="name" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Sua Mensagem de Amor</label>
+                        <textarea id="message" class="form-input" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">💕 Enviar Amor</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>💕 Feito com muito amor para você, Bianca 💕</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "forbianca",
+  "version": "1.0.0",
+  "description": "Uma declaração de amor especial para Bianca 💕",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "deploy": "vercel --prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZarbL/ForBianca.git"
+  },
+  "keywords": [
+    "love",
+    "declaration",
+    "romantic",
+    "pwa",
+    "mobile-first"
+  ],
+  "author": "Luis Zarbielli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ZarbL/ForBianca/issues"
+  },
+  "homepage": "https://github.com/ZarbL/ForBianca#readme"
+}

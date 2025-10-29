@@ -1,0 +1,20 @@
+# Arquivos e pastas para ignorar no deploy Vercel
+
+# Backups
+*.backup
+*_old.*
+index_old.html
+index_fixed.html
+
+# Development
+node_modules/
+.git/
+.vscode/
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+
+# README de desenvolvimento
+readme.md

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="O Cálculo do Impossível - Nossa História">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- iOS PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-fullscreen">
+    <meta name="apple-mobile-web-app-title" content="O Cálculo do Impossível">
+    
+    <title>O Cálculo do Impossível 💕</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos adicionais românticos para a página de vídeo */
+        body {
+            background: linear-gradient(135deg, #1a0a1f 0%, #2d1620 50%, #1a0a1f 100%);
+            font-family: 'Georgia', serif;
+        }
+        
+        .video-modal-inner {
+            background: radial-gradient(circle at center, rgba(255, 20, 147, 0.1) 0%, transparent 70%);
+        }
+        
+        .video-container {
+            background: linear-gradient(135deg, #1f1428 0%, #3a1f2d 100%);
+            border: 2px solid rgba(255, 20, 147, 0.3);
+            box-shadow: 
+                0 0 40px rgba(255, 20, 147, 0.4),
+                0 20px 60px rgba(0, 0, 0, 0.8),
+                inset 0 0 60px rgba(255, 20, 147, 0.05);
+        }
+        
+        .slide-title {
+            text-shadow: 
+                0 0 20px rgba(255, 20, 147, 0.8),
+                0 0 40px rgba(255, 20, 147, 0.5),
+                2px 2px 4px rgba(0, 0, 0, 0.8);
+            color: #ff69b4;
+            font-family: 'Georgia', serif;
+        }
+        
+        .slide-number {
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 15px rgba(255, 20, 147, 0.8));
+        }
+        
+        .prob-big, .data-big {
+            color: #ff69b4;
+            text-shadow: 
+                0 0 10px rgba(255, 20, 147, 0.8),
+                0 0 20px rgba(255, 20, 147, 0.5);
+            font-weight: bold;
+        }
+        
+        .slide-detail {
+            color: #f0d5e8;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            line-height: 1.8;
+        }
+        
+        .video-close {
+            background: linear-gradient(135deg, #ff1493 0%, #c71585 100%);
+            box-shadow: 
+                0 0 20px rgba(255, 20, 147, 0.6),
+                0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .video-close:hover {
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 
+                0 0 30px rgba(255, 20, 147, 0.9),
+                0 6px 12px rgba(0, 0, 0, 0.7);
+        }
+        
+        .video-progress-bar {
+            background: linear-gradient(90deg, #ff1493, #ff69b4, #ff1493);
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.8);
+        }
+        
+        .control-btn {
+            background: linear-gradient(135deg, #2d1620 0%, #1f1428 100%);
+            border: 2px solid rgba(255, 20, 147, 0.4);
+            color: #ff69b4;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: linear-gradient(135deg, #ff1493 0%, #c71585 100%);
+            border-color: #ff69b4;
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        .control-play {
+            background: linear-gradient(135deg, #ff1493 0%, #c71585 100%);
+            color: white;
+            border-color: #ff69b4;
+        }
+        
+        .control-play:hover {
+            box-shadow: 0 0 30px rgba(255, 20, 147, 0.8);
+        }
+        
+        .verdict-final {
+            text-shadow: 0 0 20px rgba(255, 20, 147, 0.6);
+        }
+        
+        .verdict-icon {
+            filter: drop-shadow(0 0 20px rgba(255, 20, 147, 0.8));
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .result-huge {
+            color: #ff69b4;
+            text-shadow: 0 0 20px rgba(255, 20, 147, 0.8);
+        }
+        
+        /* Partículas de fundo */
+        body::before {
+            content: '';
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, rgba(255, 20, 147, 0.3), transparent),
+                radial-gradient(2px 2px at 60% 70%, rgba(255, 105, 180, 0.3), transparent),
+                radial-gradient(2px 2px at 50% 50%, rgba(255, 20, 147, 0.2), transparent);
+            background-size: 200px 200px, 300px 300px, 250px 250px;
+            animation: sparkle 20s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        /* Melhorar centralização dos elementos */
+        .video-modal-inner {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+        
+        .video-container {
+            margin: 0 auto !important;
+        }
+        
+        .slide-content {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+        }
+        
+        .slide-body, .data-showcase, .probability-display, .verdict-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Responsividade dos cards */
+        .data-big, .prob-big, .prob-fraction, .prob-scientific, .prob-answer {
+            max-width: 100%;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            box-sizing: border-box;
+        }
+        
+        .video-controls {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 0.5rem !important;
+            justify-content: center !important;
+            padding: 1rem !important;
+        }
+        
+        .control-btn {
+            flex: 1 1 auto !important;
+            min-width: 100px !important;
+            max-width: 150px !important;
+            padding: 0.75rem 1rem !important;
+            font-size: 0.9rem !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+        }
+        
+        /* Responsividade Mobile */
+        @media (max-width: 768px) {
+            .video-container {
+                width: 95% !important;
+                max-width: 100% !important;
+                max-height: 95vh !important;
+            }
+            
+            .video-slide {
+                padding: 1rem !important;
+            }
+            
+            .slide-content {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+            
+            .slide-title {
+                font-size: 1.25rem !important;
+                line-height: 1.3 !important;
+            }
+            
+            .slide-number {
+                font-size: 2.5rem !important;
+            }
+            
+            .data-big {
+                font-size: 0.85rem !important;
+                padding: 0.5rem !important;
+            }
+            
+            .prob-big {
+                font-size: 1rem !important;
+            }
+            
+            .prob-fraction, .prob-scientific {
+                font-size: 0.9rem !important;
+            }
+            
+            .slide-detail {
+                font-size: 0.85rem !important;
+                line-height: 1.5 !important;
+            }
+            
+            .control-btn {
+                min-width: 80px !important;
+                max-width: 110px !important;
+                padding: 0.6rem 0.8rem !important;
+                font-size: 0.8rem !important;
+            }
+            
+            .video-controls {
+                padding: 0.75rem !important;
+                gap: 0.4rem !important;
+            }
+            
+            .video-close {
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 1.5rem !important;
+            }
+            
+            .video-counter {
+                font-size: 0.85rem !important;
+                padding: 0.25rem 0.5rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .video-container {
+                width: 98% !important;
+            }
+            
+            .slide-title {
+                font-size: 1.1rem !important;
+            }
+            
+            .slide-number {
+                font-size: 2rem !important;
+            }
+            
+            .data-big {
+                font-size: 0.75rem !important;
+                padding: 0.4rem !important;
+            }
+            
+            .control-btn {
+                min-width: 70px !important;
+                padding: 0.5rem 0.6rem !important;
+                font-size: 0.75rem !important;
+            }
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0; background: #000; overflow-x: hidden;">
+    
+    <!-- Modal de Vídeo - Agora em página dedicada -->
+    <div class="video-modal active" id="videoModal" style="display: block; position: relative; width: 100vw; height: 100vh; background: #000;">
+        <div class="video-modal-inner">
+            <div class="video-container">
+                <button type="button" class="video-close" id="closeVideoBtn" onclick="window.close();">✕</button>
+                
+                <!-- Progress bar -->
+                <div class="video-progress-container">
+                    <div class="video-progress-bar" id="progressBar"></div>
+                </div>
+                
+                <!-- Contador de frames -->
+                <div class="video-counter">
+                    <span id="currentFrame">1</span> / <span id="totalFrames">11</span>
+                </div>
+                
+                <!-- Conteúdo do vídeo (slides) -->
+                <div class="video-slides" id="videoSlides">
+                    <!-- Slide 1: Intro -->
+                    <div class="video-slide active">
+                        <div class="slide-content">
+                            <h2 class="slide-title">📊 Os Dados Contra Nós</h2>
+                            <div class="slide-body">
+                                <div class="data-showcase">
+                                    <div class="data-big">🚌 700.000 pessoas/dia</div>
+                                    <div class="data-big">🏘️ Gama ↔ Planaltina (80km)</div>
+                                    <div class="data-big">🌙 Tarde da noite</div>
+                                    <div class="data-big">❓ ZERO motivo</div>
+                                </div>
+                                <p class="slide-detail" style="margin-top: 1rem; font-style: italic;">
+                                    Uma rodoviária gigante, milhares de pessoas passando... mas naquele momento, 
+                                    o universo preparava algo especial. Dois desconhecidos, de lugares opostos, 
+                                    sem saber que estavam prestes a viver uma história impossível. 💫
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Probabilidade 1 -->
+                    <div class="video-slide">
+                        <div class="slide-content">
+                            <h2 class="slide-number">1️⃣</h2>
+                            <h3 class="slide-title">Bianca estar lá naquela noite</h3>
+                            <div class="probability-display">
+                                <div class="prob-big">1 / 50.000</div>
+                            </div>
+                            <p class="slide-detail">
+                                <strong>A estrela que brilhou fora do lugar:</strong><br>
+                                Você, minha Bianca, vive em Planaltina. Naquela noite, não tinha razão para estar 
+                                na Rodoviária do Plano. Era tarde, você deveria estar em casa, mas algo te trouxe até lá. 
+                                Como se uma força invisível sussurrasse: "vai, hoje é o dia". 🌟
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Probabilidade 2 -->
+                    <div class="video-slide">
+                        <div class="slide-content">
+                            <h2 class="slide-number">2️⃣</h2>
+                            <h3 class="slide-title">Eu estar lá naquela noite</h3>
+                            <div class="probability-display">
+                                <div class="prob-big">1 / 50.000</div>
+                            </div>
+                            <p class="slide-detail">
+                                <strong>O coração que seguiu um caminho desconhecido:</strong><br>
+                                Eu, do Gama, trabalhando, cansado. Deveria ter ido direto pra casa, 
+                                mas algo dentro de mim disse "passa na rodoviária". Sem motivo lógico. 
+                                Era como se meu coração soubesse que alguém especial estava me esperando. 💙
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4: Probabilidade 3 -->
+                    <div class="video-slide">
+                        <div class="slide-content">
+                            <h2 class="slide-number">3️⃣</h2>
+                            <h3 class="slide-title">Mesmo horário (±5 min)</h3>
+                            <div class="probability-display">
+                                <div class="prob-big">1 / 288</div>
+                            </div>
+                            <p class="slide-detail">
+                                <strong>O relógio do destino:</strong><br>
+                                De todos os momentos do dia, chegamos com SEGUNDOS de diferença! 
+                                Se eu tivesse saído 5 minutos antes, se você tivesse demorado um pouco mais... 
+                                nunca teríamos nos encontrado. Mas o tempo parou para nós. ⏰💕
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5: Probabilidade 4 -->
+                    <div class="video-slide">
+                        <div class="slide-content">
+                            <h2 class="slide-number">4️⃣</h2>
+                            <h3 class="slide-title">Reconhecer a Bianca</h3>
+                            <div class="probability-display">
+                                <div class="prob-big">1 / 700.000</div>
+                            </div>
+                            <p class="slide-detail">
+                                <strong>O olhar que atravessou multidões:</strong><br>
+                                Entre 700 MIL rostos diferentes todo dia, meus olhos encontraram você. 
+                                Não foi um olhar qualquer - foi reconhecimento instantâneo, como se minha alma 
+                                já te conhecesse de outra vida. "Eu conheço ela de algum lugar..." 👀✨
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 6: Probabilidade 5 -->
+                    <div class="video-slide">
+                        <div class="slide-content">
+                            <h2 class="slide-number">5️⃣</h2>
+                            <h3 class="slide-title">Encontrar no Instagram</h3>
+                            <div class="probability-display">
+                                <div class="prob-big">1 / 5.000</div>
+                            </div>
+                            <p class="slide-detail">
+                                <strong>A busca incansável do apaixonado:</strong><br>
+                                Eu não te seguia. Só tinha uma curtida antiga, perdida em milhares de interações. 
+                                Mas eu PRECISAVA te encontrar. Vasculhei, procurei, não desisti. 
+                                Porque quando você encontra alguém especial, move montanhas. 🔍💖
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 7: Probabilidade 6 -->
+                    <div class="video-slide">
+                        <div class="slide-content">
+                            <h2 class="slide-number">6️⃣</h2>
+                            <h3 class="slide-title">Ter coragem de chamar</h3>
+                            <div class="probability-display">
+                                <div class="prob-big">1 / 100</div>
+                            </div>
+                            <p class="slide-detail">
+                                <strong>O medo que o amor venceu:</strong><br>
+                                Meu coração batia forte. "E se ela não responder? E se achar estranho?" 
+                                Mas algo maior que o medo me empurrou. Porque quando é destino, 
+                                a coragem aparece de onde não existe. Eu PRECISAVA tentar. 💪❤️
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 8: Probabilidade 7 -->
+                    <div class="video-slide">
+                        <div class="slide-content">
+                            <h2 class="slide-number">7️⃣</h2>
+                            <h3 class="slide-title">Ela responder e termos química</h3>
+                            <div class="probability-display">
+                                <div class="prob-big">1 / 50</div>
+                            </div>
+                            <p class="slide-detail">
+                                <strong>A magia do primeiro "Oi":</strong><br>
+                                Você respondeu! E não foi só educação - foi conexão. As conversas fluíam, 
+                                as risadas eram sinceras, o tempo voava. Não era só mais um "oi", 
+                                era o começo de algo que mudaria nossas vidas para sempre. 💬✨
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 9: Cálculo -->
+                    <div class="video-slide">
+                        <div class="slide-content">
+                            <h2 class="slide-title">🧮 Multiplicando Tudo...</h2>
+                            <div class="calculation-animation">
+                                <div class="calc-line">(1/50.000) ×</div>
+                                <div class="calc-line">(1/50.000) ×</div>
+                                <div class="calc-line">(1/288) ×</div>
+                                <div class="calc-line">(1/700.000) ×</div>
+                                <div class="calc-line">(1/5.000) ×</div>
+                                <div class="calc-line">(1/100) ×</div>
+                                <div class="calc-line">(1/50)</div>
+                            </div>
+                            <p class="slide-detail" style="margin-top: 1rem;">
+                                Sete impossibilidades que precisavam acontecer em sequência. 
+                                Sete milagres que se alinharam perfeitamente. 
+                                Agora vamos ver o resultado... 🎲
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 10: Resultado -->
+                    <div class="video-slide">
+                        <div class="slide-content">
+                            <h2 class="slide-title">📈 Resultado Final</h2>
+                            <div class="final-result">
+                                <div class="result-big">1 em</div>
+                                <div class="result-huge">12.600.000.000.000.000.000.000.000</div>
+                                <div class="result-label">(12,6 SEPTILHÕES!)</div>
+                                <div class="result-scientific">≈ 7,94 × 10<sup>-26</sup></div>
+                            </div>
+                            <p class="slide-detail" style="margin-top: 1rem; font-weight: bold;">
+                                Esse número é tão pequeno que nem calculadoras comuns conseguem processar. 
+                                É mais raro que encontrar um átomo específico no oceano. 
+                                É... impossível. 🌌
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 11: Veredicto Final -->
+                    <div class="video-slide">
+                        <div class="slide-content">
+                            <h2 class="slide-title">🎯 Veredicto</h2>
+                            <div class="verdict-final">
+                                <div class="verdict-icon">💕</div>
+                                <div class="verdict-main-text">
+                                    MATEMATICAMENTE<br>
+                                    <strong>IMPOSSÍVEL!</strong>
+                                </div>
+                                <div class="verdict-subtitle">Foi DESTINO! ✨</div>
+                                <p class="verdict-comparison">
+                                    Mais fácil ganhar na<br>
+                                    Mega-Sena 5 VEZES SEGUIDAS!
+                                </p>
+                                <p class="verdict-love">
+                                    <strong>A verdade que a matemática provou:</strong><br>
+                                    O universo inteiro conspirou para nos unir. 
+                                    Entre bilhões de possibilidades, trilhões de caminhos diferentes, 
+                                    todos os astros se alinharam para que eu e você nos encontrássemos. 
+                                    Não foi sorte. Não foi acaso. Foi DESTINO escrito nas estrelas. 
+                                    Fomos feitos um para o outro, e a ciência comprova! 🌟💕
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Controles do vídeo -->
+                <div class="video-controls">
+                    <button type="button" class="control-btn" id="prevBtn">◀ Anterior</button>
+                    <button type="button" class="control-btn control-play" id="playPauseBtn">▶ Play</button>
+                    <button type="button" class="control-btn" id="nextBtn">Próximo ▶</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Script específico para a página de vídeo standalone
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('=== Página de vídeo carregada ===');
+            
+            let currentSlide = 0;
+            let totalSlides = 11;
+            let autoPlayInterval = null;
+
+            const closeVideoBtn = document.getElementById('closeVideoBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const videoSlides = document.querySelectorAll('.video-slide');
+            const progressBar = document.getElementById('progressBar');
+            const currentFrameSpan = document.getElementById('currentFrame');
+            const totalFramesSpan = document.getElementById('totalFrames');
+
+            console.log('Elementos encontrados:');
+            console.log('- closeVideoBtn:', closeVideoBtn);
+            console.log('- prevBtn:', prevBtn);
+            console.log('- nextBtn:', nextBtn);
+            console.log('- playPauseBtn:', playPauseBtn);
+            console.log('- videoSlides:', videoSlides.length);
+
+            // Função para mostrar slide específico
+            function showSlide(n) {
+                console.log('Mostrando slide:', n);
+                
+                if (!videoSlides || videoSlides.length === 0) {
+                    console.error('Nenhum slide disponível!');
+                    return;
+                }
+                
+                if (n >= totalSlides) {
+                    currentSlide = totalSlides - 1;
+                    stopAutoPlay();
+                } else if (n < 0) {
+                    currentSlide = 0;
+                } else {
+                    currentSlide = n;
+                }
+                
+                // Esconder todos os slides
+                videoSlides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+                
+                // Mostrar slide atual
+                if (videoSlides[currentSlide]) {
+                    videoSlides[currentSlide].classList.add('active');
+                }
+                
+                // Atualizar progress bar
+                if (progressBar) {
+                    const progress = ((currentSlide + 1) / totalSlides) * 100;
+                    progressBar.style.width = progress + '%';
+                }
+                
+                // Atualizar contador
+                if (currentFrameSpan) {
+                    currentFrameSpan.textContent = currentSlide + 1;
+                }
+                if (totalFramesSpan) {
+                    totalFramesSpan.textContent = totalSlides;
+                }
+            }
+
+            // Função para iniciar autoplay
+            function startAutoPlay() {
+                console.log('Iniciando autoplay...');
+                stopAutoPlay(); // Limpar qualquer intervalo anterior
+                autoPlayInterval = setInterval(() => {
+                    if (currentSlide < totalSlides - 1) {
+                        showSlide(currentSlide + 1);
+                    } else {
+                        stopAutoPlay();
+                        if (playPauseBtn) {
+                            playPauseBtn.innerHTML = '🔄 Reiniciar';
+                        }
+                    }
+                }, 5500); // 5.5 segundos por slide
+                
+                if (playPauseBtn) {
+                    playPauseBtn.innerHTML = '⏸ Pause';
+                }
+            }
+
+            // Função para parar autoplay
+            function stopAutoPlay() {
+                if (autoPlayInterval) {
+                    clearInterval(autoPlayInterval);
+                    autoPlayInterval = null;
+                    console.log('Autoplay parado');
+                }
+            }
+
+            // Função para toggle play/pause
+            function toggleAutoPlay() {
+                console.log('Toggle autoplay. Atual:', autoPlayInterval);
+                if (autoPlayInterval) {
+                    stopAutoPlay();
+                    if (playPauseBtn) {
+                        playPauseBtn.innerHTML = '▶ Play';
+                    }
+                } else {
+                    // Se estiver no último slide, reiniciar do início
+                    if (currentSlide >= totalSlides - 1) {
+                        showSlide(0);
+                    }
+                    startAutoPlay();
+                }
+            }
+
+            // Botão próximo
+            if (nextBtn) {
+                nextBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    console.log('Botão próximo clicado');
+                    stopAutoPlay();
+                    showSlide(currentSlide + 1);
+                    if (playPauseBtn) {
+                        playPauseBtn.innerHTML = '▶ Play';
+                    }
+                });
+                console.log('✅ Event listener adicionado ao botão Próximo');
+            }
+
+            // Botão anterior
+            if (prevBtn) {
+                prevBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    console.log('Botão anterior clicado');
+                    stopAutoPlay();
+                    showSlide(currentSlide - 1);
+                    if (playPauseBtn) {
+                        playPauseBtn.innerHTML = '▶ Play';
+                    }
+                });
+                console.log('✅ Event listener adicionado ao botão Anterior');
+            }
+
+            // Botão Play/Pause
+            if (playPauseBtn) {
+                playPauseBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    console.log('Botão play/pause clicado');
+                    toggleAutoPlay();
+                });
+                console.log('✅ Event listener adicionado ao botão Play/Pause');
+            }
+
+            // Botão fechar
+            if (closeVideoBtn) {
+                closeVideoBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    console.log('Fechando janela...');
+                    stopAutoPlay();
+                    window.close();
+                });
+                console.log('✅ Event listener adicionado ao botão Fechar');
+            }
+
+            // Navegação por teclado
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    e.preventDefault();
+                    stopAutoPlay();
+                    showSlide(currentSlide + 1);
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    stopAutoPlay();
+                    showSlide(currentSlide - 1);
+                } else if (e.key === 'Escape') {
+                    window.close();
+                }
+            });
+
+            // Gestos de swipe no mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            document.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            
+            document.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    // Swipe left - próximo
+                    stopAutoPlay();
+                    showSlide(currentSlide + 1);
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    // Swipe right - anterior
+                    stopAutoPlay();
+                    showSlide(currentSlide - 1);
+                }
+            }
+
+            // Inicializar apresentação
+            console.log('Inicializando apresentação...');
+            if (videoSlides && videoSlides.length > 0) {
+                showSlide(0);
+                startAutoPlay();
+                console.log('✅ Apresentação iniciada com', videoSlides.length, 'slides');
+            } else {
+                console.error('❌ Nenhum slide encontrado!');
+            }
+        });
+    </script>
+</body>
+</html>
